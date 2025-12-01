@@ -1,0 +1,19 @@
+meta {
+  name: Update Product Interaction
+  type: http
+}
+
+patch {
+  url: {{baseUrl}}/product-interactions/100
+  body: json
+}
+
+body:json {
+  {
+    "objective": "Client issue discussed",
+    "discussion": "Seal leakage reported",
+    "nextStep": "Send rep to inspect",
+    "followUpDate": "2025-02-15",
+    "linkedInteractions": ["PI0002", "PI0003"]
+  }
+}

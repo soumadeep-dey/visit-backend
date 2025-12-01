@@ -1,0 +1,18 @@
+meta {
+  name: create lead via product interaction
+  type: http
+}
+
+post {
+  url: {{baseUrl}}/product-interactions/100/leads
+  body: json
+}
+
+body:json {
+  {
+    "principal": "Deublin",
+    "product": "Deublin Rotary Union",
+    "company": "Tata Steel",
+    "comments": "Urgent requirement"
+  }
+}

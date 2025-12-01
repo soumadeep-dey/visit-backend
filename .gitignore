@@ -1,0 +1,89 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# TypeScript
+dist/
+.build/
+lib/
+*.tsbuildinfo
+
+# Environment
+.env
+.env.local
+.env.*.local
+.env.test
+.env.production
+.env.*.secret
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+lerna-debug.log
+.pnpm-debug.log
+
+# Editor / IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ts-node-dev / temp
+ts-node-dev/
+tmp/
+temp/
+*.tmp
+*.temp
+
+# TypeORM / migration outputs (if you build them)
+src/migrations/*.js
+dist/migrations/*.js
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Bruno / testing artifacts (if any)
+.bruno/
+*.bru.cache
+.bruno-cache/
+
+# Generated files
+*.env.production.local
+*.local
+
+# OS swap / lock files
+*.swp
+*.swo
+
+# Docker
+docker-compose.override.yml
+.env.docker
+Dockerfile.*
+.docker/
+
+# Keychain / secrets
+*.pem
+*.key
+*.crt
+
+# Misc
+.idea/
+.vscode/*
+!.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
+
+# Optional: ignore database files if you use local sqlite for tests
+*.sqlite
+*.sqlite3

@@ -1,0 +1,17 @@
+meta {
+  name: update interaction
+  type: http
+}
+
+patch {
+  url: {{baseUrl}}/interactions/10
+  body: json
+}
+
+body:json {
+  {
+    "departments": ["HSM1", "Maintenance"],
+    "personsMet": ["Ravi", "Kumar"],
+    "products": ["Deublin", "Gewes"]
+  }
+}

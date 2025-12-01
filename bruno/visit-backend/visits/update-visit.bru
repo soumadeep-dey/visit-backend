@@ -1,0 +1,18 @@
+meta {
+  name: Update Visit
+  type: http
+}
+
+patch {
+  url: {{baseUrl}}/visits/1
+  body: json
+}
+
+body:json {
+  {
+    "customerName": "Tata Steel",
+    "location": "Jamshedpur",
+    "interactionType": "physical",
+    "sharedWith": ["John", "Doe"]
+  }
+}

@@ -1,0 +1,16 @@
+meta {
+  name: Update Lead
+  type: http
+}
+
+patch {
+  url: {{baseUrl}}/leads/5
+  body: json
+}
+
+body:json {
+  {
+    "leadStatus": "open",
+    "estimatedRevenue": 65000
+  }
+}

@@ -1,0 +1,15 @@
+meta {
+  name: create product interaction
+  type: http
+}
+
+post {
+  url: {{baseUrl}}/interactions/10/product-interactions
+  body: json
+}
+
+body:json {
+  {
+    "productName": "Deublin"
+  }
+}

@@ -1,0 +1,17 @@
+meta {
+  name: create lead standalone
+  type: http
+}
+
+post {
+  url: {{baseUrl}}/leads
+  body: json
+}
+
+body:json {
+  {
+    "principal": "Genie",
+    "company": "L&T",
+    "productInteractionId": 100
+  }
+}
