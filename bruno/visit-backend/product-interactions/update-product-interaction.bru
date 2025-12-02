@@ -1,11 +1,13 @@
 meta {
   name: Update Product Interaction
   type: http
+  seq: 1
 }
 
 patch {
-  url: {{baseUrl}}/product-interactions/100
+  url: {{baseUrl}}/product-interactions/1
   body: json
+  auth: none
 }
 
 body:json {

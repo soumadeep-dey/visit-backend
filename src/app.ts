@@ -1,17 +1,29 @@
 import express from "express";
 import bodyParser from "body-parser";
 import { json } from "body-parser";
+import cors  from "cors";
 import { visitsRouter } from "./modules/visits/visit.controller";
 import { leadsRouter } from "./modules/leads/lead.controller";
+import { interactionsRouter } from "./modules/visits/interaction.controller";
+import { productInteractionsRouter } from "./modules/visits/productInteraction.controller";
 
 export const createApp = () => {
   const app = express();
   app.use(json());
   app.use(bodyParser.urlencoded({ extended: true }));
 
+  app.use(
+    cors({
+      origin: "http://localhost:3000",
+      credentials: true, 
+    })
+  );
+
   app.get("/", (req, res) => res.json({ ok: true, service: "visit-backend" }));
 
   app.use("/api", visitsRouter);
+  app.use("/api", interactionsRouter);
+  app.use("/api", productInteractionsRouter);
   app.use("/api", leadsRouter);
 
   // simple error handler

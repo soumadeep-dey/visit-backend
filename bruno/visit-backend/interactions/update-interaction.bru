@@ -1,11 +1,13 @@
 meta {
   name: update interaction
   type: http
+  seq: 1
 }
 
 patch {
-  url: {{baseUrl}}/interactions/10
+  url: {{baseUrl}}/interactions/1
   body: json
+  auth: none
 }
 
 body:json {

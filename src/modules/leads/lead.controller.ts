@@ -1,47 +1,49 @@
 import { Router } from "express";
 import { AppDataSource } from "../../data-source";
-import { generateCode } from "../../utils/codeGenerator";
-import { Interaction } from "../visits/interaction.entity";
-import { ProductInteraction } from "../visits/productInteraction.entity";
+import { Lead } from "./lead.entity";
 
-export const productInteractionsRouter = Router();
+export const leadsRouter = Router();
 
-/** Create Product Interaction */
-productInteractionsRouter.post(
-  "/interactions/:interactionId/product-interactions",
-  async (req, res) => {
-    const interactionId = Number(req.params.interactionId);
+/** Create lead */
+leadsRouter.post("/leads", async (req, res) => {
+  const repo = AppDataSource.getRepository(Lead);
+  const lead = repo.create(req.body);
+  const saved = await repo.save(lead);
+  res.status(201).json(saved);
+});
 
-    const interactionRepo = AppDataSource.getRepository(Interaction);
-    const interaction = await interactionRepo.findOneBy({ id: interactionId });
-    if (!interaction)
-      return res.status(404).json({ error: "Interaction not found" });
+/** Get all leads */
+leadsRouter.get("/leads", async (req, res) => {
+  const repo = AppDataSource.getRepository(Lead);
+  const leads = await repo.find();
+  res.json(leads);
+});
 
-    const repo = AppDataSource.getRepository(ProductInteraction);
-    const count = await repo.count();
-    const piCode = generateCode("PI", count);
+/** Get lead by ID */
+leadsRouter.get("/leads/:id", async (req, res) => {
+  const repo = AppDataSource.getRepository(Lead);
+  const lead = await repo.findOneBy({ id: Number(req.params.id) });
+  if (!lead) return res.status(404).json({ error: "Lead not found" });
+  res.json(lead);
+});
 
-    const pi = repo.create({
-      interactionId,
-      piCode,
-      productName: req.body.productName,
-    });
+/** Update lead */
+leadsRouter.patch("/leads/:id", async (req, res) => {
+  const repo = AppDataSource.getRepository(Lead);
+  const lead = await repo.findOneBy({ id: Number(req.params.id) });
+  if (!lead) return res.status(404).json({ error: "Lead not found" });
 
-    const saved = await repo.save(pi);
-    return res.status(201).json(saved);
-  }
-);
+  repo.merge(lead, req.body);
+  const saved = await repo.save(lead);
+  res.json(saved);
+});
 
-/** Update Product Interaction */
-productInteractionsRouter.patch("/product-interactions/:id", async (req, res) => {
-  const repo = AppDataSource.getRepository(ProductInteraction);
+/** Delete lead */
+leadsRouter.delete("/leads/:id", async (req, res) => {
+  const repo = AppDataSource.getRepository(Lead);
+  const lead = await repo.findOneBy({ id: Number(req.params.id) });
+  if (!lead) return res.status(404).json({ error: "Lead not found" });
 
-  const pi = await repo.findOneBy({ id: Number(req.params.id) });
-  if (!pi)
-    return res.status(404).json({ error: "Product Interaction not found" });
-
-  repo.merge(pi, req.body);
-  const saved = await repo.save(pi);
-
-  return res.json(saved);
+  await repo.remove(lead);
+  res.json({ success: true });
 });

@@ -1,7 +1,4 @@
-# ⭐ **FULL EXPLANATION — WITH EXAMPLES**
-
-
-# THE REAL DATA HIERARCHY
+# FLOW HIERARCHY
 
 Your whole form actually has  **4 nested entities** :
 
@@ -9,7 +6,6 @@ Your whole form actually has  **4 nested entities** :
   └── Interactions</span><span>[]</span><span>
          └── ProductInteractions</span><span>[]</span><span>
                  └── Leads</span><span>[]</span></span></code></div></div></pre>
-
 
 ---
 
