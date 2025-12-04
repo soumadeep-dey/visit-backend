@@ -1,11 +1,11 @@
 import express from "express";
 import bodyParser from "body-parser";
 import { json } from "body-parser";
-import cors  from "cors";
+import cors from "cors";
 import { visitsRouter } from "./modules/visits/visit.controller";
 import { leadsRouter } from "./modules/leads/lead.controller";
 import { interactionsRouter } from "./modules/visits/interaction.controller";
-import { productInteractionsRouter } from "./modules/visits/productInteraction.controller";
+import { principalInteractionsRouter } from "./modules/visits/productInteraction.controller";
 
 export const createApp = () => {
   const app = express();
@@ -15,7 +15,7 @@ export const createApp = () => {
   app.use(
     cors({
       origin: "http://localhost:3000",
-      credentials: true, 
+      credentials: true,
     })
   );
 
@@ -23,7 +23,7 @@ export const createApp = () => {
 
   app.use("/api", visitsRouter);
   app.use("/api", interactionsRouter);
-  app.use("/api", productInteractionsRouter);
+  app.use("/api", principalInteractionsRouter);
   app.use("/api", leadsRouter);
 
   // simple error handler

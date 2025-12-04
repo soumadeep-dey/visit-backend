@@ -4,12 +4,12 @@
 ├── </span><span>Visit</span><span></span><span>Header</span><span></span><span>(</span><span>summary</span><span>)</span><span>
 ├── </span><span>Interactions</span><span></span><span>Accordion</span><span>
 │     ├── </span><span>Interaction</span><span></span><span>1</span><span>
-│     │     ├── </span><span>ProductInteractions</span><span></span><span>Table</span><span>
+│     │     ├── </span><span>PrincipalInteractions</span><span></span><span>Table</span><span>
 │     │     │     ├── </span><span>Row</span><span>:</span><span></span><span>LinkedBadge</span><span> → </span><span>Modal</span><span>
 │     │     │     └── </span><span>Row</span><span>:</span><span></span><span>Edit</span><span> → </span><span>Modal</span><span>
 │     ├── </span><span>Interaction</span><span></span><span>2</span><span>
 │     └── </span><span>...</span><span>
 ├── </span><span>Modals</span><span>
-│     ├── </span><span>ProductInteractionEditModal</span><span>
+│     ├── </span><span>PrincipalInteractionEditModal</span><span>
 │     ├── </span><span>LinkedInteractionsModal</span><span>
 │     └── </span><span>LinkPreviousInteractionsModal</span><span></span><span>(</span><span>selectable</span><span>)</span></span></code></div></div></pre>

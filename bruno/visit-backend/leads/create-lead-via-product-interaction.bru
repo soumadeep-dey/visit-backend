@@ -1,17 +1,17 @@
 meta {
-  name: create lead via product interaction
+  name: create lead via principal interaction
   type: http
 }
 
 post {
-  url: {{baseUrl}}/product-interactions/100/leads
+  url: {{baseUrl}}/principal-interactions/100/leads
   body: json
 }
 
 body:json {
   {
     "principal": "Deublin",
-    "product": "Deublin Rotary Union",
+    "principal": "Deublin Rotary Union",
     "company": "Tata Steel",
     "comments": "Urgent requirement"
   }

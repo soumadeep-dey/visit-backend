@@ -1,0 +1,17 @@
+meta {
+  name: create principal interaction
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/interactions/1/principal-interactions
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "principalName": "Deublin"
+  }
+}

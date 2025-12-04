@@ -1,14 +1,14 @@
 import { Router } from "express";
 import { AppDataSource } from "../../data-source";
-import { ProductInteraction } from "./productInteraction.entity";
+import { PrincipalInteraction } from "./principalInteraction.entity";
 import { Interaction } from "./interaction.entity";
 import { generateCode } from "../../utils/codeGenerator";
 
-export const productInteractionsRouter = Router();
+export const principalInteractionsRouter = Router();
 
-/** Create Product Interaction */
-productInteractionsRouter.post(
-  "/interactions/:interactionId/product-interactions",
+/** Create principal Interaction */
+principalInteractionsRouter.post(
+  "/interactions/:interactionId/principal-interactions",
   async (req, res) => {
     const interactionId = Number(req.params.interactionId);
 
@@ -17,14 +17,14 @@ productInteractionsRouter.post(
     if (!interaction)
       return res.status(404).json({ error: "Interaction not found" });
 
-    const repo = AppDataSource.getRepository(ProductInteraction);
+    const repo = AppDataSource.getRepository(PrincipalInteraction);
     const count = await repo.count();
     const piCode = generateCode("PI", count);
 
     const pi = repo.create({
       interactionId,
       piCode,
-      productName: req.body.productName,
+      principalName: req.body.principalName,
     });
 
     const saved = await repo.save(pi);
@@ -32,16 +32,19 @@ productInteractionsRouter.post(
   }
 );
 
-/** Update Product Interaction */
-productInteractionsRouter.patch("/product-interactions/:id", async (req, res) => {
-  const repo = AppDataSource.getRepository(ProductInteraction);
+/** Update Principal Interaction */
+principalInteractionsRouter.patch(
+  "/principal-interactions/:id",
+  async (req, res) => {
+    const repo = AppDataSource.getRepository(PrincipalInteraction);
 
-  const pi = await repo.findOneBy({ id: Number(req.params.id) });
-  if (!pi)
-    return res.status(404).json({ error: "Product Interaction not found" });
+    const pi = await repo.findOneBy({ id: Number(req.params.id) });
+    if (!pi)
+      return res.status(404).json({ error: "Principal Interaction not found" });
 
-  repo.merge(pi, req.body);
-  const saved = await repo.save(pi);
+    repo.merge(pi, req.body);
+    const saved = await repo.save(pi);
 
-  return res.json(saved);
-});
+    return res.json(saved);
+  }
+);

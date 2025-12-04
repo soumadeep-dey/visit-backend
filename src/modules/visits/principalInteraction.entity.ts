@@ -10,8 +10,8 @@ import {
 import { Interaction } from "./interaction.entity";
 import { Lead } from "../leads/lead.entity";
 
-@Entity({ name: "product_interactions" })
-export class ProductInteraction {
+@Entity({ name: "principal_interactions" })
+export class PrincipalInteraction {
   @PrimaryGeneratedColumn()
   id!: number;
 
@@ -21,11 +21,11 @@ export class ProductInteraction {
   @Column({ unique: true })
   piCode!: string; // e.g. V0001-I001-PI001
 
-  @ManyToOne(() => Interaction, (i) => i.productInteractions)
+  @ManyToOne(() => Interaction, (i) => i.principalInteractions)
   interaction!: Interaction;
 
   @Column({ nullable: true })
-  productName?: string;
+  principalName?: string;
 
   @Column("text", { nullable: true })
   objective?: string;
@@ -42,7 +42,7 @@ export class ProductInteraction {
   @Column({ nullable: true })
   leadId?: number;
 
-  @OneToOne(() => Lead, (l) => l.productInteraction)
+  @OneToOne(() => Lead, (l) => l.principalInteraction)
   @JoinColumn({ name: "leadId" })
   lead?: Lead;
 

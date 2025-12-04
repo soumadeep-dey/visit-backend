@@ -7,7 +7,7 @@ import {
   CreateDateColumn,
 } from "typeorm";
 import { Visit } from "./visit.entity";
-import { ProductInteraction } from "./productInteraction.entity";
+import { PrincipalInteraction } from "./principalInteraction.entity";
 
 @Entity({ name: "interactions" })
 export class Interaction {
@@ -30,10 +30,12 @@ export class Interaction {
   personsMet?: string[];
 
   @Column("text", { array: true, nullable: true })
-  products?: string[];
+  principals?: string[];
 
-  @OneToMany(() => ProductInteraction, (p) => p.interaction, { cascade: true })
-  productInteractions?: ProductInteraction[];
+  @OneToMany(() => PrincipalInteraction, (p) => p.interaction, {
+    cascade: true,
+  })
+  principalInteractions?: PrincipalInteraction[];
 
   @CreateDateColumn()
   createdAt!: Date;

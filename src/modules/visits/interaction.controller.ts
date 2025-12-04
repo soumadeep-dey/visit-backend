@@ -24,7 +24,7 @@ interactionsRouter.post("/visits/:visitId/interactions", async (req, res) => {
     interactionCode,
     departments: [],
     personsMet: [],
-    products: [],
+    principals: [],
   });
 
   const saved = await repo.save(interaction);

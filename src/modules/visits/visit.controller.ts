@@ -2,7 +2,7 @@ import { Router } from "express";
 import { AppDataSource } from "../../data-source";
 import { Visit } from "./visit.entity";
 import { Interaction } from "./interaction.entity";
-import { ProductInteraction } from "./productInteraction.entity";
+import { PrincipalInteraction } from "./principalInteraction.entity";
 import { Lead } from "../leads/lead.entity";
 import { generateCode } from "../../utils/codeGenerator";
 
@@ -58,8 +58,8 @@ visitsRouter.get("/visits/:id", async (req, res) => {
     where: { id: Number(req.params.id) },
     relations: [
       "interactions",
-      "interactions.productInteractions",
-      "interactions.productInteractions.lead",
+      "interactions.principalInteractions",
+      "interactions.principalInteractions.lead",
     ],
   });
 

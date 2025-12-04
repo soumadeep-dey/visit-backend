@@ -1,10 +1,10 @@
 # FLOW HIERARCHY
 
-Your whole form actually has  **4 nested entities** :
+Your whole form actually has **4 nested entities** :
 
 <pre class="overflow-visible!" data-start="617" data-end="715"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre!"><span><span>Visit
   └── Interactions</span><span>[]</span><span>
-         └── ProductInteractions</span><span>[]</span><span>
+         └── PrincipalInteractions</span><span>[]</span><span>
                  └── Leads</span><span>[]</span></span></code></div></div></pre>
 
 ---
@@ -13,11 +13,11 @@ Your whole form actually has  **4 nested entities** :
 
 You want ONLY this:
 
-* Create a new row in DB
-* Assign a unique Visit ID (like V01)
-* Set userId (current logged-in user)
-* Set status: `"draft"`
-* Set createdAt timestamp
+- Create a new row in DB
+- Assign a unique Visit ID (like V01)
+- Set userId (current logged-in user)
+- Set status: `"draft"`
+- Set createdAt timestamp
 
 So your request body is usually EMPTY:
 
@@ -102,48 +102,48 @@ You call:
 
 This means:
 
-* Create empty Interaction under the Visit
-* Backend returns new interactionId (like V01-1)
+- Create empty Interaction under the Visit
+- Backend returns new interactionId (like V01-1)
 
-You don’t send departments, products, persons yet.
+You don’t send departments, Principals, persons yet.
 
 Those come later via PATCH.
 
 ---
 
-# 🟦 **STEP 4 — When user selects products**
+# 🟦 **STEP 4 — When user selects Principals**
 
 You update interaction:
 
 <pre class="overflow-visible!" data-start="2438" data-end="2513"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre!"><span><span>PATCH /api/interactions/V01-1
 {
-  </span><span>"products"</span><span>: [</span><span>"Deublin"</span><span>, </span><span>"Koba"</span><span>]
+  </span><span>"Principals"</span><span>: [</span><span>"Deublin"</span><span>, </span><span>"Koba"</span><span>]
 }
 </span></span></code></div></div></pre>
 
 ---
 
-# 🟦 **STEP 5 — When user clicks Add Product Interaction**
+# 🟦 **STEP 5 — When user clicks Add Principal Interaction**
 
 You POST again without details:
 
-<pre class="overflow-visible!" data-start="2613" data-end="2710"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre!"><span><span>POST /api/product-interactions
+<pre class="overflow-visible!" data-start="2613" data-end="2710"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre!"><span><span>POST /api/Principal-interactions
 {
   </span><span>"interactionId"</span><span>: </span><span>"V01-1"</span><span>,
-  </span><span>"productName"</span><span>: </span><span>"Deublin"</span><span>
+  </span><span>"PrincipalName"</span><span>: </span><span>"Deublin"</span><span>
 }
 </span></span></code></div></div></pre>
 
 Backend returns:
 
 <pre class="overflow-visible!" data-start="2730" data-end="2779"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre!"><span><span>{</span><span>
-  </span><span>"productInteractionId"</span><span>:</span><span></span><span>"V01-1-PI1"</span><span>
+  </span><span>"PrincipalInteractionId"</span><span>:</span><span></span><span>"V01-1-PI1"</span><span>
 </span><span>}</span><span>
 </span></span></code></div></div></pre>
 
 Then PATCH:
 
-<pre class="overflow-visible!" data-start="2794" data-end="2889"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre!"><span><span>PATCH /api/product-interactions/V01-1-PI1
+<pre class="overflow-visible!" data-start="2794" data-end="2889"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre!"><span><span>PATCH /api/Principal-interactions/V01-1-PI1
 {
   </span><span>"objective"</span><span>: </span><span>"Discussed sealing issues"</span><span>
 }

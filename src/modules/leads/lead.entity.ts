@@ -5,7 +5,7 @@ import {
   OneToOne,
   CreateDateColumn,
 } from "typeorm";
-import { ProductInteraction } from "../visits/productInteraction.entity";
+import { PrincipalInteraction } from "../visits/principalInteraction.entity";
 
 @Entity({ name: "leads" })
 export class Lead {
@@ -15,8 +15,8 @@ export class Lead {
   @Column({ unique: true })
   leadCode!: string; // e.g. L0001
 
-  @OneToOne(() => ProductInteraction, (pi) => pi.lead)
-  productInteraction?: ProductInteraction;
+  @OneToOne(() => PrincipalInteraction, (pi) => pi.lead)
+  principalInteraction?: PrincipalInteraction;
 
   @Column({ nullable: true })
   visitId?: number;
