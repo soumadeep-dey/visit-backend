@@ -19,6 +19,12 @@ export class Visit {
   customerName?: string;
 
   @Column({ nullable: true })
+  dateFrom?: string;
+
+  @Column({ nullable: true })
+  dateTo?: string;
+
+  @Column({ nullable: true })
   location?: string;
 
   @Column({ nullable: true })
