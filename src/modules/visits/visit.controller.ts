@@ -9,6 +9,21 @@ import { generateCode } from "../../utils/codeGenerator";
 export const visitsRouter = Router();
 
 /** Create Visit with auto Vxxxx code */
+visitsRouter.post("/visits", async (req, res) => {
+  const repo = AppDataSource.getRepository(Visit);
+
+  const count = await repo.count();
+  const visitCode = generateCode("V", count);
+
+  const visit = repo.create({
+    visitCode,
+    status: "draft",
+  });
+
+  const saved = await repo.save(visit);
+  return res.status(201).json(saved);
+});
+
 /** Get all visits with aggregated stats */
 visitsRouter.get("/visits", async (req, res) => {
   const visitRepo = AppDataSource.getRepository(Visit);
